@@ -1,12 +1,16 @@
 import * as express from 'express';
+import userRoute from './routes/userRoute';
 
 class App {
   public app: express.Express;
   // ...
 
   constructor() {
-    // ...
+    this.app = express();
     this.config();
+    this.app.use(express.json());
+    this.app.use('/login', userRoute);
+
     // ...
   }
 
@@ -24,7 +28,9 @@ class App {
 
   // ...
   public start(PORT: string | number):void {
-    // ...
+    this.app.listen(PORT, () => {
+      console.log(`Rodando na porta ${PORT}`);
+    });
   }
 }
 
