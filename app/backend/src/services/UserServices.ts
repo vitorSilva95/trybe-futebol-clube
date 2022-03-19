@@ -1,25 +1,22 @@
-import * as fs from 'fs';
-import * as jwt from 'jsonwebtoken';
+import generateToken from '../utils/generateToken';
 import UserModel from '../database/models/User';
-
-const secretKey = fs.readFileSync('jwt.evaluation.key', 'utf-8');
+import Login from '../interfaces/Login';
 
 class UserServices {
   userModel = UserModel;
 
-  jwtSecret = secretKey;
-
-  async login(email:string):Promise<string> {
-    const result = await this.userModel.findOne({ where: { email } });
-
+  async login(email:string):Promise<Login | string> {
+    const result = await this.userModel.findOne({ where: { email }, raw: true });
     if (!result) {
-      return 'nao foi possivel';
+      return 'User does not exist';
     }
-    const token = jwt.sign({ email }, this.jwtSecret, {
-      algorithm: 'HS256',
-      expiresIn: '60h',
-    });
-    return token;
+    const { password, ...user } = result;
+    const token = generateToken(user);
+    const payload = {
+      user: result, token,
+    };
+
+    return payload;
   }
 }
 

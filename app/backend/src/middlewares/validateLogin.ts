@@ -7,7 +7,7 @@ const validatePassword = (req:Request, res:Response, next:NextFunction) => {
     return res.status(400).json({ message: 'inform the password' });
   }
   if (password.length <= 6) {
-    return res.status(400).json({ message: 'e-mail is invalid' });
+    return res.status(400).json({ message: 'password length must be greater than 6' });
   }
   next();
 };
