@@ -11,14 +11,12 @@ class UserServices {
 
   async login(email:string, bodyPassword:string):Promise<Login | Error> {
     const data = await this.userModel.findOne({ where: { email }, raw: true });
-    console.log(data);
 
     if (!data || !comparePassword(bodyPassword, data.password)) {
       return { status: UNAUTHORIZED, response: { message: 'All fields must be filled' } };
     }
 
     const { password, ...user } = data;
-    console.log(user);
     const token = generateToken(user);
     const payload = {
       user, token,
