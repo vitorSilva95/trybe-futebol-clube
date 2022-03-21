@@ -18,9 +18,10 @@ class UserServices {
     }
 
     const { password, ...user } = data;
+    console.log(user);
     const token = generateToken(user);
     const payload = {
-      user: data, token,
+      user, token,
     };
 
     return { status: OK, response: payload };
