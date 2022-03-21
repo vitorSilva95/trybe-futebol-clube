@@ -6,7 +6,7 @@ import { app } from '../app';
 import User from '../database/models/User';
 
 import { Response } from 'superagent';
-import { userPayload } from './mocks'
+import { loginPayload, userPayload } from './mocks'
 import StatusCode from  '../enums/StatusCode';
 
 const { OK ,UNAUTHORIZED } = StatusCode;
@@ -35,7 +35,7 @@ describe('Testa a rota login', () => {
         
 
         expect(chaiHttpResponse).to.be.status(OK);
-        expect(chaiHttpResponse.body.user).to.deep.equal(userPayload);
+        expect(chaiHttpResponse.body.user).to.deep.equal(loginPayload);
         expect(chaiHttpResponse.body).to.includes.keys('user','token')
     });
     it('verifica a resposta quando o usuario informa uma senha menor que 7 digitos', async () => {
