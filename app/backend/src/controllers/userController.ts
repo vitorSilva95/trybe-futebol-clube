@@ -8,6 +8,11 @@ class UserController {
     const result = await this.userService.login(email, bodyPassword);
     return result;
   }
+
+  validateToken(token:string): string {
+    const role = this.userService.validateToken(token);
+    return role;
+  }
 }
 
 export default UserController;
