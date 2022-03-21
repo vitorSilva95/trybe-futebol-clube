@@ -6,5 +6,27 @@ const userPayload ={
   email: "admin@admin.com"
 }
 
+const loginPayload ={
+  id: 1,
+  username: "Admin",
+  role: "admin",
+  email: "admin@admin.com"
+}
 
-export { userPayload }
+const clubs = [
+    {
+      "id": 1,
+      "clubName": "Avaí/Kindermann"
+    },
+    {
+      "id": 2,
+      "clubName": "Bahia"
+    },
+    {
+      "id": 3,
+      "clubName": "Botafogo"
+    },
+  ]
+
+
+export { userPayload, clubs, loginPayload }
