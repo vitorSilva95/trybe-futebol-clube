@@ -1,22 +1,29 @@
 import generateToken from '../utils/generateToken';
 import UserModel from '../database/models/User';
-import Login from '../interfaces/Login';
+import { Login, Error } from '../interfaces/Login';
+import comparePassword from '../utils/comparePassword';
+import StatusCode from '../enums/StatusCode';
+
+const { OK, UNAUTHORIZED } = StatusCode;
 
 class UserServices {
   userModel = UserModel;
 
-  async login(email:string):Promise<Login | string> {
-    const result = await this.userModel.findOne({ where: { email }, raw: true });
-    if (!result) {
-      return 'User does not exist';
+  async login(email:string, bodyPassword:string):Promise<Login | Error> {
+    const data = await this.userModel.findOne({ where: { email }, raw: true });
+    console.log(data);
+
+    if (!data || !comparePassword(bodyPassword, data.password)) {
+      return { status: UNAUTHORIZED, response: { message: 'All fields must be filled' } };
     }
-    const { password, ...user } = result;
+
+    const { password, ...user } = data;
     const token = generateToken(user);
     const payload = {
-      user: result, token,
+      user: data, token,
     };
 
-    return payload;
+    return { status: OK, response: payload };
   }
 }
 
