@@ -6,9 +6,10 @@ const userRouter = Router();
 const userController = new UserController();
 
 userRouter.post('/', validateLogin, async (req: Request, res: Response) => {
-  const { email } = req.body as { email:string };
-  const result = await userController.login(email);
-  res.status(200).json(result);
+  const { email, password } = req.body as { email:string, password:string };
+  const data = await userController.login(email, password);
+
+  res.status(data.status).json(data.response);
 });
 
 export default userRouter;

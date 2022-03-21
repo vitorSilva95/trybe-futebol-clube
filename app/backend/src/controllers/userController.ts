@@ -1,11 +1,11 @@
 import UserServices from '../services/UserServices';
-import Login from '../interfaces/Login';
+import { Login, Error } from '../interfaces/Login';
 
 class UserController {
   userService = new UserServices();
 
-  async login(email: string): Promise<Login | string> {
-    const result = await this.userService.login(email);
+  async login(email: string, bodyPassword:string): Promise<Login | Error> {
+    const result = await this.userService.login(email, bodyPassword);
     return result;
   }
 }
