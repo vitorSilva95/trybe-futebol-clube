@@ -1,4 +1,5 @@
 import * as express from 'express';
+import clubsRoute from './routes/clubsRoute';
 import userRoute from './routes/userRoute';
 
 class App {
@@ -10,6 +11,7 @@ class App {
     this.config();
     this.app.use(express.json());
     this.app.use('/login', userRoute);
+    this.app.use('/clubs', clubsRoute);
 
     // ...
   }
