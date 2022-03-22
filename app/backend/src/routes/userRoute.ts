@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import authMiddleware from '../middlewares/authMiddleware';
-import UserController from '../controllers/userController';
+import UserController from '../controllers/UserController';
 import validateLogin from '../middlewares/validateLogin';
 import StatusCode from '../enums/StatusCode';
 
