@@ -17,7 +17,8 @@ const { expect } = chai;
 
 describe('Testa a rota /clubs', () => {
 
-  let chaiHttpResponse: Response;
+  describe('Testa a função get all', ()=>{
+    let chaiHttpResponse: Response;
   
   before(async () => {
     sinon.stub(Club, "findAll").resolves(clubs as Club[]);
@@ -27,7 +28,7 @@ describe('Testa a rota /clubs', () => {
       (Club.findAll as sinon.SinonStub).restore();
     })
 
-    it('verifica se retorna os clubes com sucesso', async () => {
+    it('verifica se retorna todos os clubes com sucesso', async () => {
       chaiHttpResponse = await chai
         .request(app)
         .get('/clubs')
@@ -37,7 +38,32 @@ describe('Testa a rota /clubs', () => {
         expect(chaiHttpResponse).to.be.status(OK);
         expect(chaiHttpResponse.body).to.deep.equal(clubs);
         expect(chaiHttpResponse.body).to.be.an('array');
-    });
+    })
+  });
+
+  describe('Testa se busca um clube especifico', ()=>{
+    let chaiHttpResponse: Response;
+  
+  before(async () => {
+    sinon.stub(Club, "findByPk").resolves(clubs[0] as Club);
+  });
+
+    after(()=>{
+      (Club.findByPk as sinon.SinonStub).restore();
+    })
+
+    it('verifica se retorna o clube de acordo com o id do parametro com sucesso', async () => {
+      chaiHttpResponse = await chai
+        .request(app)
+        .get('/clubs/1')
+        .send()
+        
+
+        expect(chaiHttpResponse).to.be.status(OK);
+        expect(chaiHttpResponse.body).to.deep.equal(clubs[0]);
+        expect(chaiHttpResponse.body).to.includes.keys('id','clubName')
+    })
+  });
     
 });
 
