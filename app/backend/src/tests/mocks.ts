@@ -15,18 +15,37 @@ const loginPayload ={
 
 const clubs = [
     {
-      "id": 1,
-      "clubName": "Avaí/Kindermann"
+      id: 1,
+      clubName: "Avaí/Kindermann"
     },
     {
-      "id": 2,
-      "clubName": "Bahia"
+      id: 2,
+      clubName: "Bahia"
     },
     {
-      "id": 3,
-      "clubName": "Botafogo"
+      id: 3,
+      clubName: "Botafogo"
     },
   ]
 
+  const matchsPayload = 
+    [
+      {
+        id: 1,
+        homeTeam: 16,
+        homeTeamGoals: 1,
+        awayTeam: 8,
+        awayTeamGoals: 1,
+        inProgress: false,
+      },
+      {
+        id: 41,
+        homeTeam: 16,
+        homeTeamGoals: 2,
+        awayTeam: 9,
+        awayTeamGoals: 0,
+        inProgress: true,
+      }
+    ]
 
-export { userPayload, clubs, loginPayload }
+export { userPayload, clubs, loginPayload, matchsPayload }
