@@ -12,4 +12,10 @@ clubsRoute.get('/', async (req: Request, res: Response) => {
   return res.status(OK).json(data);
 });
 
+clubsRoute.get('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const club = await clubController.getById(+id);
+  return res.status(OK).json(club);
+});
+
 export default clubsRoute;
