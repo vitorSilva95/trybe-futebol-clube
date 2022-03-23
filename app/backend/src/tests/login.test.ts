@@ -110,4 +110,25 @@ describe('Testa a rota login', () => {
     });
 });
 
-
+describe('Testa a rota /login/validate', () => {
+    let chaiHttpResponse: Response;
+    before(async () => {
+      sinon
+        .stub(User, 'findOne')
+        .resolves(userPayload as User);
+    });
+  
+    after(()=>{
+      (User.findOne as sinon.SinonStub).restore();
+    })
+  
+    it('Retorna UNAUTHORIZED com a menssagem Token not found', async () => {
+      chaiHttpResponse = await chai
+        .request(app)
+        .get('/login/validate')
+        .set('Authorization', '')
+  
+      expect(chaiHttpResponse).to.be.status(UNAUTHORIZED);
+      expect(chaiHttpResponse.body.message).to.be.equal( 'Token not found');
+  })
+});
