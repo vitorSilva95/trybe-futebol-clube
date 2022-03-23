@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as Cors from 'cors';
 import clubsRoute from './routes/clubsRoute';
 import matchsRoute from './routes/matchsRoute';
 import userRoute from './routes/userRoute';
@@ -11,6 +12,7 @@ class App {
     this.app = express();
     this.config();
     this.app.use(express.json());
+    this.app.use(Cors());
     this.app.use('/login', userRoute);
     this.app.use('/clubs', clubsRoute);
     this.app.use('/matchs', matchsRoute);
