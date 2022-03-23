@@ -48,4 +48,15 @@ const clubs = [
       }
     ]
 
-export { userPayload, clubs, loginPayload, matchsPayload }
+
+    const createMatch =[ {
+        id: 1,
+        awayTeam: 12,
+        awayTeamGoals: 1,
+        homeTeam: 4,
+        homeTeamGoals: 1,
+        inProgress: false
+      },{}
+    ]
+
+export { userPayload, clubs, loginPayload, matchsPayload,createMatch }
