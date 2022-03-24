@@ -49,14 +49,14 @@ const clubs = [
     ]
 
 
-    const createMatch =[ {
-        id: 1,
-        awayTeam: 12,
-        awayTeamGoals: 1,
-        homeTeam: 4,
-        homeTeamGoals: 1,
-        inProgress: false
-      },{}
-    ]
+    const updatedMatch ={
+      id: 1,
+      homeTeam: 16,
+      homeTeamGoals: 3,
+      awayTeam: 8,
+      awayTeamGoals: 1,
+      inProgress: false,
+    }
+    
 
-export { userPayload, clubs, loginPayload, matchsPayload,createMatch }
+export { userPayload, clubs, loginPayload, matchsPayload,updatedMatch }
