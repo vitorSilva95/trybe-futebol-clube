@@ -1,6 +1,7 @@
 import { IMatch } from '../interfaces/Match';
 import MatchModel from '../database/models/Match';
 import ClubModel from '../database/models/Club';
+import Score from '../interfaces/Score';
 
 class MatchServices {
   matchModel = MatchModel;
@@ -53,6 +54,16 @@ class MatchServices {
     const matchInProgress = await this.matchModel.findOne({ where: { id }, raw: true });
 
     return matchInProgress;
+  }
+
+  async updatedScore(id:number, { homeTeamGoals, awayTeamGoals }:Score) {
+    await this.matchModel.update({ homeTeamGoals, awayTeamGoals }, {
+      where: { id },
+    });
+
+    const data = await this.matchModel.findOne({ where: { id }, raw: true });
+
+    return data;
   }
 }
 
