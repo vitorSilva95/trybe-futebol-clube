@@ -29,9 +29,9 @@ matchsRoute.patch('/:id/finish', authMiddleware, async (req: Request, res: Respo
 matchsRoute.patch('/:id', authMiddleware, async (req: Request, res: Response) => {
   const { id } = req.params;
   const { homeTeamGoals, awayTeamGoals } = req.body;
-  const matchUpdateScore = await matchController
-    .updatedScore(+id, { homeTeamGoals, awayTeamGoals });
-  return res.status(OK).json(matchUpdateScore);
+  const matchWithUpdatedScore = await matchController
+    .updatedScoreBoard(+id, { homeTeamGoals, awayTeamGoals });
+  return res.status(OK).json(matchWithUpdatedScore);
 });
 
 export default matchsRoute;
