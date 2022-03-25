@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import generateToken from '../utils/generateToken';
 import UserModel from '../database/models/User';
-import { Login, Error } from '../interfaces/Login';
+import { ILogin, IError } from '../interfaces/ILogin';
 import comparePassword from '../utils/comparePassword';
 import StatusCode from '../enums/StatusCode';
 
@@ -12,7 +12,7 @@ class UserServices {
 
   jwtDecode = jwt;
 
-  async login(email:string, bodyPassword:string):Promise<Login | Error> {
+  async login(email:string, bodyPassword:string):Promise<ILogin | IError> {
     const data = await this.userModel.findOne({ where: { email }, raw: true });
 
     if (!data || !comparePassword(bodyPassword, data.password)) {

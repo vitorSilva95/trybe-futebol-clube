@@ -1,7 +1,7 @@
-import { IMatch } from '../interfaces/Match';
+import { IMatch } from '../interfaces/IMatch';
 import MatchModel from '../database/models/Match';
 import ClubModel from '../database/models/Club';
-import ScoreBoard from '../interfaces/ScoreBoard';
+import { IScoreBoard } from '../interfaces/IScoreBoard';
 
 class MatchServices {
   matchModel = MatchModel;
@@ -21,7 +21,7 @@ class MatchServices {
     return data;
   }
 
-  async findByInProgress(inProgress:boolean) {
+  async findByInProgress(inProgress:boolean): Promise<IMatch[]> {
     const data = await this.matchModel.findAll({
       where: { inProgress },
       include: [
@@ -45,18 +45,17 @@ class MatchServices {
     return data;
   }
 
-  async update(id:number) {
-    const data = await this.matchModel.update({ inProgress: false }, {
+  async update(id:number): Promise<IMatch | null> {
+    await this.matchModel.update({ inProgress: false }, {
       where: { id },
     });
-    console.log(data);
 
     const matchInProgress = await this.matchModel.findOne({ where: { id }, raw: true });
 
     return matchInProgress;
   }
 
-  async updatedScoreBoard(id:number, { homeTeamGoals, awayTeamGoals }:ScoreBoard) {
+  async updatedScoreBoard(id:number, { homeTeamGoals, awayTeamGoals }:IScoreBoard) {
     await this.matchModel.update({ homeTeamGoals, awayTeamGoals }, {
       where: { id },
     });
