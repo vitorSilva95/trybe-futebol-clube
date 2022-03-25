@@ -1,4 +1,4 @@
-export default interface ScoreBoard {
+export interface IScoreBoard {
   homeTeamGoals:number
   awayTeamGoals:number
 }

@@ -1,10 +1,10 @@
-export interface Error {
+export interface IError {
   status:number;
   response:{
     message:string
   };
 }
-export interface Login {
+export interface ILogin {
   status:number
   response: {
     user: {
