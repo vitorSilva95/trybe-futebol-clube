@@ -1,10 +1,10 @@
 import UserServices from '../services/UserServices';
-import { Login, Error } from '../interfaces/Login';
+import { ILogin, IError } from '../interfaces/ILogin';
 
 class UserController {
   userService = new UserServices();
 
-  async login(email: string, bodyPassword:string): Promise<Login | Error> {
+  async login(email: string, bodyPassword:string): Promise<ILogin | IError> {
     const result = await this.userService.login(email, bodyPassword);
     return result;
   }

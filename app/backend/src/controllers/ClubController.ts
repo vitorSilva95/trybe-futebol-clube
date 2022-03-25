@@ -1,15 +1,15 @@
 import ClubServices from '../services/ClubServices';
-import { Club } from '../interfaces/Club';
+import { IClub } from '../interfaces/IClub';
 
 class UserController {
   clubServices = new ClubServices();
 
-  async getAll(): Promise<Club[]> {
+  async getAll(): Promise<IClub[]> {
     const data = await this.clubServices.getAll();
     return data;
   }
 
-  async getById(id: number):Promise<Club | null> {
+  async getById(id: number):Promise<IClub | null> {
     const club = await this.clubServices.getById(id);
     return club;
   }

@@ -1,6 +1,6 @@
 import MatchServices from '../services/MatchServices';
-import { IMatch } from '../interfaces/Match';
-import ScoreBoard from '../interfaces/ScoreBoard';
+import { IMatch } from '../interfaces/IMatch';
+import { IScoreBoard } from '../interfaces/IScoreBoard';
 
 class MatchController {
   matchServices = new MatchServices();
@@ -20,7 +20,7 @@ class MatchController {
     return matchUpdate;
   }
 
-  async updatedScoreBoard(id:number, { homeTeamGoals, awayTeamGoals } : ScoreBoard) {
+  async updatedScoreBoard(id:number, { homeTeamGoals, awayTeamGoals } : IScoreBoard) {
     const matchWithUpdatedScore = await this.matchServices
       .updatedScoreBoard(id, { homeTeamGoals, awayTeamGoals });
     return matchWithUpdatedScore;
