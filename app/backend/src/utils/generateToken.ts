@@ -1,8 +1,8 @@
 import * as jwt from 'jsonwebtoken';
 import FsSecretKey from './FsSecretKey';
-import User from '../interfaces/User';
+import { IUser } from '../interfaces/IUser';
 
-const generateToken = (payload:User) : string => {
+const generateToken = (payload:IUser) : string => {
   const secretKey = FsSecretKey();
   const token = jwt.sign(payload, secretKey, {
     algorithm: 'HS256',
