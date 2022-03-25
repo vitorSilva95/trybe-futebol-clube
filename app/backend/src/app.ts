@@ -3,6 +3,7 @@ import * as Cors from 'cors';
 import clubsRoute from './routes/clubsRoute';
 import matchsRoute from './routes/matchsRoute';
 import userRoute from './routes/userRoute';
+import leaderBoard from './routes/leaderboard';
 
 class App {
   public app: express.Express;
@@ -16,6 +17,7 @@ class App {
     this.app.use('/login', userRoute);
     this.app.use('/clubs', clubsRoute);
     this.app.use('/matchs', matchsRoute);
+    this.app.use('/leaderboard', leaderBoard);
 
     // ...
   }
