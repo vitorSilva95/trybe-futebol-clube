@@ -8,6 +8,16 @@ class LeaderBoardController {
     const data = await this.leaderBoardServices.getAllHomeClub();
     return data;
   }
+
+  async getAllAwayClub(): Promise<ILeaderBoard[]> {
+    const data = await this.leaderBoardServices.getAllAwayClub();
+    return data;
+  }
+
+  async getAllClubs(): Promise<ILeaderBoard[]> {
+    const data = await this.leaderBoardServices.getAllClubs();
+    return data;
+  }
 }
 
 export default LeaderBoardController;
