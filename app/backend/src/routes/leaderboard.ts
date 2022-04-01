@@ -12,4 +12,14 @@ leaderBoard.get('/home', async (_req: Request, res: Response) => {
   return res.status(OK).json(data);
 });
 
+leaderBoard.get('/away', async (_req: Request, res: Response) => {
+  const data = await leaderBoardController.getAllAwayClub();
+  return res.status(OK).json(data);
+});
+
+leaderBoard.get('/', async (_req: Request, res: Response) => {
+  const data = await leaderBoardController.getAllClubs();
+  return res.status(OK).json(data);
+});
+
 export default leaderBoard;

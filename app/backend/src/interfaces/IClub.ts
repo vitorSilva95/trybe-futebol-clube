@@ -4,4 +4,5 @@ export interface IClub {
   id:number,
   clubName: string,
   homeClub?:IMatch[] | any;
+  awayClub?:IMatch[] | any;
 }
