@@ -34,8 +34,6 @@ class LeaderBoardServices {
       ],
     });
 
-    console.log(finishedMatches);
-
     const leaderBoard:ILeaderBoard[] = finishedMatches.map(({ clubName, awayClub }) => {
       const leaderBoardRow = new LeaderBoardAway(clubName, awayClub).returnData();
       return leaderBoardRow;
